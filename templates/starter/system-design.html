@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+   <title><!-- Set by config-loader.js --></title>
+   <script src="jarvis-file.config.js"></script>
+   <script src="js/config-loader.js"></script>
+   <script src="js/auth-gate.js"></script>
+   <link rel="stylesheet" href="css/jarvis-file.css">
+</head>
+<body>
+
+   <header class="header">
+      <div class="header-top">
+         <div class="logo-area">
+            <div class="logo-icon" id="jf-logo"></div>
+            <div class="logo-text">
+               <h1 id="jf-project-name"></h1>
+               <span id="jf-doc-name">System Design</span>
+            </div>
+         </div>
+         <nav class="doc-switcher" id="jf-doc-nav"></nav>
+      </div>
+   </header>
+
+   <div class="content">
+      <section class="jf-hero">
+         <h2>System Design</h2>
+         <p class="section-subtitle">Technical architecture and system components.</p>
+      </section>
+
+      <!-- Tab Navigation -->
+      <div class="jf-tabs" id="design-tabs">
+         <button class="active" data-tab="architecture">Architecture</button>
+         <button data-tab="data-model">Data Model</button>
+         <button data-tab="integrations">Integrations</button>
+         <button data-tab="security">Security</button>
+      </div>
+
+      <!-- Architecture Tab -->
+      <div class="jf-tab-panel active" id="tab-architecture">
+         <section class="jf-section">
+            <h2>Architecture Overview</h2>
+            <p>Describe your system architecture here. Use cards and grids
+               to show component relationships.</p>
+         </section>
+      </div>
+
+      <!-- Data Model Tab -->
+      <div class="jf-tab-panel" id="tab-data-model">
+         <section class="jf-section">
+            <h2>Data Model</h2>
+            <p>Document your data model, schemas, and entity relationships.</p>
+         </section>
+      </div>
+
+      <!-- Integrations Tab -->
+      <div class="jf-tab-panel" id="tab-integrations">
+         <section class="jf-section">
+            <h2>Integrations</h2>
+            <p>List external services, APIs, and integration points.</p>
+         </section>
+      </div>
+
+      <!-- Security Tab -->
+      <div class="jf-tab-panel" id="tab-security">
+         <section class="jf-section">
+            <h2>Security</h2>
+            <p>Document authentication, authorization, and security controls.</p>
+         </section>
+      </div>
+   </div>
+
+   <script src="js/comments.js"></script>
+   <script src="js/search.js"></script>
+   <script src="js/version-loader.js"></script>
+   <script src="js/jarvis-chat.js"></script>
+   <script src="js/built-with.js"></script>
+
+   <script>
+      document.getElementById('jf-logo').textContent = window.JF.project.logoLetter;
+      document.getElementById('jf-project-name').textContent = window.JF.project.name;
+      var nav = document.getElementById('jf-doc-nav');
+      window.JF.docs.forEach(function(doc) {
+         var a = document.createElement('a');
+         a.href = doc.file;
+         a.textContent = doc.shortName;
+         if (doc.file === 'system-design.html') { a.className = 'active'; a.style.color = doc.color; }
+         nav.appendChild(a);
+      });
+
+      // Tab switching
+      document.querySelectorAll('.jf-tabs button').forEach(function(btn) {
+         btn.addEventListener('click', function() {
+            document.querySelectorAll('.jf-tabs button').forEach(function(b) { b.classList.remove('active'); });
+            document.querySelectorAll('.jf-tab-panel').forEach(function(p) { p.classList.remove('active'); });
+            btn.classList.add('active');
+            document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+         });
+      });
+   </script>
+</body>
+</html>

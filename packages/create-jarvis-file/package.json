@@ -1,0 +1,39 @@
+{
+  "name": "@koftwentytwo/create-jarvis-file",
+  "version": "0.1.0",
+  "description": "CLI generator for Jarvis File -- interactive AI-assisted design documents",
+  "bin": {
+    "create-jarvis-file": "bin/create-jarvis-file.js"
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "templates/"
+  ],
+  "scripts": {
+    "test": "node --test test/**/*.test.js",
+    "lint": "eslint lib/ bin/"
+  },
+  "dependencies": {
+    "prompts": "^2.4.2",
+    "kleur": "^4.1.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KofTwentyTwo/jarvis-file.git",
+    "directory": "packages/create-jarvis-file"
+  },
+  "keywords": [
+    "jarvis-file",
+    "design-documents",
+    "firebase",
+    "ai-assistant",
+    "claude",
+    "interactive-docs"
+  ],
+  "author": "KofTwentyTwo",
+  "license": "MIT"
+}

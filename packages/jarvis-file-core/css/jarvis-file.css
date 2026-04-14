@@ -1,0 +1,396 @@
+/**
+ * Jarvis File Design System
+ *
+ * Complete dark-theme CSS extracted from the Praesidium2 design site.
+ * Theme colors are customizable via CSS custom properties set by
+ * config-loader.js from window.JF.theme.
+ *
+ * Phase 1: Extract from inline <style> blocks across all HTML files.
+ * Phase 3: Document all component classes.
+ */
+
+/* ── CSS Custom Properties ─────────────────────────────────────── */
+
+:root {
+   /* Dynamic (set by config-loader.js from window.JF.theme) */
+   --jf-primary: #f59e0b;
+   --jf-accent: #ef4444;
+   --jf-highlight: #22d3ee;
+
+   /* Fixed design system tokens */
+   --jf-bg-base: #0f172a;
+   --jf-bg-surface: #1e293b;
+   --jf-bg-elevated: #334155;
+   --jf-border: #334155;
+   --jf-border-hover: #475569;
+   --jf-text-primary: #f8fafc;
+   --jf-text-secondary: #e2e8f0;
+   --jf-text-muted: #94a3b8;
+   --jf-text-dim: #64748b;
+   --jf-text-faint: #475569;
+   --jf-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+   --jf-font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+   --jf-radius-sm: 6px;
+   --jf-radius-md: 10px;
+   --jf-radius-lg: 16px;
+}
+
+/* ── Base Reset ────────────────────────────────────────────────── */
+
+*, *::before, *::after {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+}
+
+body {
+   font-family: var(--jf-font-sans);
+   background: var(--jf-bg-base);
+   color: var(--jf-text-primary);
+   line-height: 1.6;
+   -webkit-font-smoothing: antialiased;
+}
+
+/* ── Header ────────────────────────────────────────────────────── */
+
+.header {
+   background: var(--jf-bg-surface);
+   border-bottom: 1px solid var(--jf-border);
+   padding: 1rem 2rem;
+   position: sticky;
+   top: 0;
+   z-index: 100;
+}
+
+.header-top {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   max-width: 1400px;
+   margin: 0 auto;
+}
+
+.logo-area {
+   display: flex;
+   align-items: center;
+   gap: 12px;
+}
+
+.logo-icon {
+   width: 40px;
+   height: 40px;
+   border-radius: var(--jf-radius-sm);
+   background: linear-gradient(135deg, var(--jf-primary), var(--jf-accent));
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-weight: 700;
+   font-size: 20px;
+   color: white;
+}
+
+.logo-text h1 {
+   font-size: 1.1rem;
+   font-weight: 700;
+   color: var(--jf-text-primary);
+   line-height: 1.2;
+}
+
+.logo-text span {
+   font-size: 0.75rem;
+   color: var(--jf-text-muted);
+}
+
+/* ── Document Switcher Nav ─────────────────────────────────────── */
+
+.doc-switcher {
+   display: flex;
+   gap: 4px;
+}
+
+.doc-switcher a {
+   padding: 6px 14px;
+   border-radius: var(--jf-radius-sm);
+   font-size: 0.8rem;
+   font-weight: 600;
+   text-decoration: none;
+   color: var(--jf-text-muted);
+   transition: all 0.2s ease;
+   letter-spacing: 0.02em;
+}
+
+.doc-switcher a:hover {
+   background: var(--jf-bg-elevated);
+   color: var(--jf-text-primary);
+}
+
+.doc-switcher a.active {
+   background: var(--jf-bg-elevated);
+   color: var(--jf-primary);
+}
+
+/* ── Content ───────────────────────────────────────────────────── */
+
+.content {
+   max-width: 1400px;
+   margin: 0 auto;
+   padding: 2rem;
+}
+
+/* ── Card ──────────────────────────────────────────────────────── */
+
+.jf-card {
+   background: var(--jf-bg-surface);
+   border: 1px solid var(--jf-border);
+   border-radius: var(--jf-radius-md);
+   padding: 1.5rem;
+   transition: border-color 0.2s ease;
+}
+
+.jf-card:hover {
+   border-color: var(--jf-border-hover);
+}
+
+/* ── Stat Card ─────────────────────────────────────────────────── */
+
+.jf-stat-card {
+   background: var(--jf-bg-surface);
+   border: 1px solid var(--jf-border);
+   border-radius: var(--jf-radius-md);
+   padding: 1.25rem;
+   text-align: center;
+}
+
+.jf-stat-card .stat-number {
+   font-size: 2rem;
+   font-weight: 700;
+   color: var(--jf-primary);
+   line-height: 1;
+}
+
+.jf-stat-card .stat-label {
+   font-size: 0.8rem;
+   color: var(--jf-text-muted);
+   margin-top: 0.5rem;
+   text-transform: uppercase;
+   letter-spacing: 0.05em;
+}
+
+/* ── Stat Grid ─────────────────────────────────────────────────── */
+
+.jf-stat-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+   gap: 1rem;
+}
+
+/* ── Grids ─────────────────────────────────────────────────────── */
+
+.jf-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+.jf-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.jf-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+
+/* ── Badge ─────────────────────────────────────────────────────── */
+
+.jf-badge {
+   display: inline-block;
+   padding: 2px 8px;
+   border-radius: 999px;
+   font-size: 0.7rem;
+   font-weight: 600;
+   text-transform: uppercase;
+   letter-spacing: 0.05em;
+   background: var(--jf-bg-elevated);
+   color: var(--jf-text-muted);
+}
+
+.jf-badge--primary { background: var(--jf-primary); color: #000; }
+.jf-badge--accent { background: var(--jf-accent); color: #fff; }
+.jf-badge--highlight { background: var(--jf-highlight); color: #000; }
+
+/* ── Table ─────────────────────────────────────────────────────── */
+
+.jf-table {
+   width: 100%;
+   border-collapse: collapse;
+   font-size: 0.9rem;
+}
+
+.jf-table th {
+   text-align: left;
+   padding: 0.75rem 1rem;
+   border-bottom: 2px solid var(--jf-border);
+   color: var(--jf-text-muted);
+   font-weight: 600;
+   font-size: 0.8rem;
+   text-transform: uppercase;
+   letter-spacing: 0.05em;
+}
+
+.jf-table td {
+   padding: 0.75rem 1rem;
+   border-bottom: 1px solid var(--jf-border);
+   color: var(--jf-text-secondary);
+}
+
+.jf-table tbody tr:hover {
+   background: var(--jf-bg-elevated);
+}
+
+/* ── Code Block ────────────────────────────────────────────────── */
+
+.jf-code {
+   background: var(--jf-bg-base);
+   border: 1px solid var(--jf-border);
+   border-radius: var(--jf-radius-sm);
+   padding: 1rem;
+   font-family: var(--jf-font-mono);
+   font-size: 0.85rem;
+   color: var(--jf-highlight);
+   overflow-x: auto;
+   line-height: 1.5;
+}
+
+/* ── Tabs ──────────────────────────────────────────────────────── */
+
+.jf-tabs {
+   display: flex;
+   gap: 2px;
+   border-bottom: 1px solid var(--jf-border);
+   margin-bottom: 1.5rem;
+}
+
+.jf-tabs button {
+   background: none;
+   border: none;
+   padding: 0.75rem 1.25rem;
+   font-size: 0.85rem;
+   font-weight: 600;
+   color: var(--jf-text-muted);
+   cursor: pointer;
+   border-bottom: 2px solid transparent;
+   transition: all 0.2s ease;
+}
+
+.jf-tabs button:hover {
+   color: var(--jf-text-primary);
+}
+
+.jf-tabs button.active {
+   color: var(--jf-primary);
+   border-bottom-color: var(--jf-primary);
+}
+
+.jf-tab-panel {
+   display: none;
+}
+
+.jf-tab-panel.active {
+   display: block;
+}
+
+/* ── Section ───────────────────────────────────────────────────── */
+
+.jf-section {
+   margin-bottom: 2rem;
+}
+
+.jf-section h2 {
+   font-size: 1.5rem;
+   font-weight: 700;
+   margin-bottom: 1rem;
+   color: var(--jf-text-primary);
+}
+
+.jf-section h3 {
+   font-size: 1.1rem;
+   font-weight: 600;
+   margin-bottom: 0.75rem;
+   color: var(--jf-text-secondary);
+}
+
+/* ── Hero ──────────────────────────────────────────────────────── */
+
+.jf-hero {
+   background: linear-gradient(135deg, var(--jf-bg-surface), var(--jf-bg-base));
+   border: 1px solid var(--jf-border);
+   border-radius: var(--jf-radius-lg);
+   padding: 3rem 2rem;
+   margin-bottom: 2rem;
+   text-align: center;
+}
+
+.jf-hero h2 {
+   font-size: 2rem;
+   margin-bottom: 0.5rem;
+}
+
+.jf-hero .section-subtitle {
+   color: var(--jf-text-muted);
+   font-size: 1.1rem;
+}
+
+/* ── Alert ─────────────────────────────────────────────────────── */
+
+.jf-alert {
+   padding: 1rem 1.25rem;
+   border-radius: var(--jf-radius-sm);
+   border-left: 4px solid var(--jf-border);
+   background: var(--jf-bg-surface);
+   margin-bottom: 1rem;
+   color: var(--jf-text-secondary);
+}
+
+.jf-alert--warn {
+   border-left-color: var(--jf-primary);
+}
+
+.jf-alert--info {
+   border-left-color: var(--jf-highlight);
+}
+
+/* ── List ──────────────────────────────────────────────────────── */
+
+.jf-list {
+   list-style: none;
+   padding-left: 1.5rem;
+}
+
+.jf-list li {
+   position: relative;
+   padding: 0.25rem 0;
+   color: var(--jf-text-secondary);
+}
+
+.jf-list li::before {
+   content: "\25B8";
+   position: absolute;
+   left: -1.25rem;
+   color: var(--jf-primary);
+}
+
+/* ── Divider ───────────────────────────────────────────────────── */
+
+.jf-divider {
+   border: none;
+   border-top: 1px solid var(--jf-border);
+   margin: 2rem 0;
+}
+
+/* ── Responsive ────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+   .header { padding: 1rem; }
+   .content { padding: 1rem; }
+   .jf-stat-grid { grid-template-columns: 1fr 1fr; }
+   .jf-grid-3, .jf-grid-4 { grid-template-columns: 1fr; }
+   .doc-switcher { display: none; }
+   .mobile-nav { display: block; }
+   .jf-hero { padding: 2rem 1rem; }
+   .jf-hero h2 { font-size: 1.5rem; }
+}
+
+@media (max-width: 480px) {
+   .jf-stat-grid { grid-template-columns: 1fr; }
+   .jf-grid-2 { grid-template-columns: 1fr; }
+}

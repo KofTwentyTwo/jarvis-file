@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+   <title><!-- Set by config-loader.js --></title>
+   <script src="jarvis-file.config.js"></script>
+   <script src="js/config-loader.js"></script>
+   <script src="js/auth-gate.js"></script>
+   <link rel="stylesheet" href="css/jarvis-file.css">
+   <style>
+      .slide { display: none; min-height: 70vh; padding: 3rem 2rem; }
+      .slide.active { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+      .slide h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+      .slide p { font-size: 1.2rem; color: var(--jf-text-muted); max-width: 700px; }
+      .slide-controls { display: flex; gap: 1rem; justify-content: center; padding: 1rem; }
+      .slide-controls button { background: var(--jf-bg-elevated); border: 1px solid var(--jf-border); color: var(--jf-text-primary); padding: 0.5rem 1.5rem; border-radius: var(--jf-radius-sm); cursor: pointer; font-size: 0.9rem; }
+      .slide-controls button:hover { border-color: var(--jf-primary); }
+      .slide-progress { height: 3px; background: var(--jf-bg-elevated); }
+      .slide-progress-bar { height: 100%; background: var(--jf-primary); transition: width 0.3s ease; }
+   </style>
+</head>
+<body>
+
+   <header class="header">
+      <div class="header-top">
+         <div class="logo-area">
+            <div class="logo-icon" id="jf-logo"></div>
+            <div class="logo-text">
+               <h1 id="jf-project-name"></h1>
+               <span id="jf-doc-name">Presentation</span>
+            </div>
+         </div>
+         <nav class="doc-switcher" id="jf-doc-nav"></nav>
+      </div>
+   </header>
+
+   <div class="slide-progress"><div class="slide-progress-bar" id="progress-bar"></div></div>
+
+   <div class="content">
+      <!-- Slide 1 -->
+      <div class="slide active">
+         <h2>Title Slide</h2>
+         <p>Your presentation subtitle goes here.</p>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="slide">
+         <h2>Problem</h2>
+         <p>What problem are you solving?</p>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="slide">
+         <h2>Solution</h2>
+         <p>How does your solution address the problem?</p>
+      </div>
+
+      <!-- Slide 4 -->
+      <div class="slide">
+         <h2>Next Steps</h2>
+         <p>What comes next?</p>
+      </div>
+
+      <div class="slide-controls">
+         <button id="prev-slide">Previous</button>
+         <span id="slide-counter" style="color: var(--jf-text-muted); line-height: 2.2;"></span>
+         <button id="next-slide">Next</button>
+      </div>
+   </div>
+
+   <script src="js/comments.js"></script>
+   <script src="js/search.js"></script>
+   <script src="js/version-loader.js"></script>
+   <script src="js/jarvis-chat.js"></script>
+   <script src="js/built-with.js"></script>
+
+   <script>
+      document.getElementById('jf-logo').textContent = window.JF.project.logoLetter;
+      document.getElementById('jf-project-name').textContent = window.JF.project.name;
+      var nav = document.getElementById('jf-doc-nav');
+      window.JF.docs.forEach(function(doc) {
+         var a = document.createElement('a');
+         a.href = doc.file;
+         a.textContent = doc.shortName;
+         if (doc.file === 'presentation.html') { a.className = 'active'; a.style.color = doc.color; }
+         nav.appendChild(a);
+      });
+
+      // Slide navigation
+      var slides = document.querySelectorAll('.slide');
+      var current = 0;
+      function showSlide(n) {
+         slides[current].classList.remove('active');
+         current = Math.max(0, Math.min(n, slides.length - 1));
+         slides[current].classList.add('active');
+         document.getElementById('slide-counter').textContent = (current + 1) + ' / ' + slides.length;
+         document.getElementById('progress-bar').style.width = ((current + 1) / slides.length * 100) + '%';
+      }
+      document.getElementById('prev-slide').addEventListener('click', function() { showSlide(current - 1); });
+      document.getElementById('next-slide').addEventListener('click', function() { showSlide(current + 1); });
+      document.addEventListener('keydown', function(e) {
+         if (e.key === 'ArrowRight' || e.key === ' ') showSlide(current + 1);
+         if (e.key === 'ArrowLeft') showSlide(current - 1);
+      });
+      showSlide(0);
+   </script>
+</body>
+</html>

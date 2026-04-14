@@ -1,0 +1,61 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Comments -- restricted to @{{ALLOWED_DOMAIN}}
+    match /{{SLUG}}_comments/{commentId} {
+      allow read: if request.auth != null
+                  && request.auth.token.email.matches('.*@{{ALLOWED_DOMAIN_ESCAPED}}');
+
+      allow create: if request.auth != null
+                    && request.auth.token.email.matches('.*@{{ALLOWED_DOMAIN_ESCAPED}}')
+                    && request.resource.data.authorEmail == request.auth.token.email
+                    && request.resource.data.keys().hasAll([
+                         'documentId', 'pageId', 'sectionId', 'content',
+                         'authorName', 'authorEmail', 'parentId', 'status',
+                         'docVersion', 'createdAt'
+                       ]);
+
+      allow update: if request.auth != null
+                    && request.auth.token.email.matches('.*@{{ALLOWED_DOMAIN_ESCAPED}}')
+                    && request.resource.data.diff(resource.data).affectedKeys()
+                       .hasOnly(['status', 'resolvedBy', 'resolvedAt'])
+                    && request.resource.data.status in ['open', 'resolved'];
+
+      allow delete: if false;
+    }
+
+    // Chat messages -- restricted to @{{ALLOWED_DOMAIN}}
+    match /{{SLUG}}_jarvis_chats/{chatId} {
+      allow read: if request.auth != null
+                  && request.auth.token.email.matches('.*@{{ALLOWED_DOMAIN_ESCAPED}}');
+
+      allow create: if request.auth != null
+                    && request.auth.token.email.matches('.*@{{ALLOWED_DOMAIN_ESCAPED}}')
+                    && request.resource.data.keys().hasAll([
+                         'sessionId', 'role', 'content',
+                         'authorName', 'authorEmail', 'createdAt'
+                       ]);
+
+      allow update: if false;
+      allow delete: if false;
+    }
+
+    // Change requests -- owner-approved workflow
+    match /{{SLUG}}_change_requests/{crId} {
+      allow read: if request.auth != null
+                  && request.auth.token.email.matches('.*@{{ALLOWED_DOMAIN_ESCAPED}}');
+
+      allow update: if request.auth != null
+                    && request.auth.token.email == '{{OWNER_EMAIL}}'
+                    && request.resource.data.diff(resource.data).affectedKeys()
+                       .hasOnly(['status', 'updatedAt']);
+    }
+
+    // Typing indicators -- ephemeral
+    match /{{SLUG}}_typing_indicators/{indicatorId} {
+      allow read, write: if request.auth != null
+                         && request.auth.token.email.matches('.*@{{ALLOWED_DOMAIN_ESCAPED}}');
+    }
+  }
+}

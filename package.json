@@ -1,0 +1,24 @@
+{
+  "name": "jarvis-file",
+  "private": true,
+  "description": "Interactive AI-assisted design documents",
+  "workspaces": [
+    "packages/create-jarvis-file",
+    "packages/jarvis-file-core",
+    "packages/jarvis-file-backend"
+  ],
+  "scripts": {
+    "lint": "eslint packages/",
+    "test": "node --test packages/*/test/**/*.test.js",
+    "clean": "rm -rf packages/*/node_modules node_modules"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KofTwentyTwo/jarvis-file.git"
+  },
+  "author": "KofTwentyTwo",
+  "license": "MIT"
+}

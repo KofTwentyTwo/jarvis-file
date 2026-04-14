@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+   <title><!-- Set by config-loader.js --></title>
+   <script src="jarvis-file.config.js"></script>
+   <script src="js/config-loader.js"></script>
+   <script src="js/auth-gate.js"></script>
+   <link rel="stylesheet" href="css/jarvis-file.css">
+</head>
+<body>
+
+   <header class="header">
+      <div class="header-top">
+         <div class="logo-area">
+            <div class="logo-icon" id="jf-logo"></div>
+            <div class="logo-text">
+               <h1 id="jf-project-name"></h1>
+               <span id="jf-doc-name">Implementation Plan</span>
+            </div>
+         </div>
+         <nav class="doc-switcher" id="jf-doc-nav"></nav>
+      </div>
+   </header>
+
+   <div class="content">
+      <section class="jf-hero">
+         <h2>Implementation Plan</h2>
+         <p class="section-subtitle">Phased build plan with milestones and acceptance criteria.</p>
+      </section>
+
+      <!-- Phase 1 -->
+      <section class="jf-section">
+         <h2>Phase 1: Foundations</h2>
+         <div class="jf-alert jf-alert--info">
+            <strong>Timeline:</strong> Weeks 1-2 | <strong>Status:</strong>
+            <span class="jf-badge">Planned</span>
+         </div>
+         <div class="jf-grid-2">
+            <div class="jf-card">
+               <h3>Task 1</h3>
+               <p>Describe the first task.</p>
+               <p><strong>Acceptance:</strong> Define what done looks like.</p>
+            </div>
+            <div class="jf-card">
+               <h3>Task 2</h3>
+               <p>Describe the second task.</p>
+               <p><strong>Acceptance:</strong> Define what done looks like.</p>
+            </div>
+         </div>
+      </section>
+
+      <hr class="jf-divider">
+
+      <!-- Phase 2 -->
+      <section class="jf-section">
+         <h2>Phase 2: Core Features</h2>
+         <div class="jf-alert jf-alert--info">
+            <strong>Timeline:</strong> Weeks 3-4 | <strong>Status:</strong>
+            <span class="jf-badge">Planned</span>
+         </div>
+         <p>Add phase 2 task cards here.</p>
+      </section>
+   </div>
+
+   <script src="js/comments.js"></script>
+   <script src="js/search.js"></script>
+   <script src="js/version-loader.js"></script>
+   <script src="js/jarvis-chat.js"></script>
+   <script src="js/built-with.js"></script>
+
+   <script>
+      document.getElementById('jf-logo').textContent = window.JF.project.logoLetter;
+      document.getElementById('jf-project-name').textContent = window.JF.project.name;
+      var nav = document.getElementById('jf-doc-nav');
+      window.JF.docs.forEach(function(doc) {
+         var a = document.createElement('a');
+         a.href = doc.file;
+         a.textContent = doc.shortName;
+         if (doc.file === 'implementation.html') { a.className = 'active'; a.style.color = doc.color; }
+         nav.appendChild(a);
+      });
+   </script>
+</body>
+</html>

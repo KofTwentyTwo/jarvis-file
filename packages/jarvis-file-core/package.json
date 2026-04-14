@@ -1,0 +1,26 @@
+{
+  "name": "@koftwentytwo/jarvis-file-core",
+  "version": "0.1.0",
+  "description": "Browser framework for Jarvis File -- auth gate, comments, search, chat, design system CSS",
+  "files": [
+    "js/",
+    "css/"
+  ],
+  "scripts": {
+    "lint": "eslint js/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KofTwentyTwo/jarvis-file.git",
+    "directory": "packages/jarvis-file-core"
+  },
+  "keywords": [
+    "jarvis-file",
+    "design-documents",
+    "firebase",
+    "comments",
+    "search"
+  ],
+  "author": "KofTwentyTwo",
+  "license": "MIT"
+}

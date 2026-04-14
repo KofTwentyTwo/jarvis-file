@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+   <title><!-- Set by config-loader.js --></title>
+   <script src="jarvis-file.config.js"></script>
+   <script src="js/config-loader.js"></script>
+   <script src="js/auth-gate.js"></script>
+   <link rel="stylesheet" href="css/jarvis-file.css">
+</head>
+<body>
+
+   <header class="header">
+      <div class="header-top">
+         <div class="logo-area">
+            <div class="logo-icon" id="jf-logo"></div>
+            <div class="logo-text">
+               <h1 id="jf-project-name"></h1>
+               <span id="jf-doc-name">Business Review</span>
+            </div>
+         </div>
+         <nav class="doc-switcher" id="jf-doc-nav"></nav>
+      </div>
+   </header>
+
+   <div class="content">
+      <section class="jf-hero">
+         <h2>Business Review</h2>
+         <p class="section-subtitle">Independent assessment, findings, and recommendations.</p>
+      </section>
+
+      <section class="jf-section">
+         <h2>Key Findings</h2>
+         <table class="jf-table">
+            <thead>
+               <tr>
+                  <th>Finding</th>
+                  <th>Impact</th>
+                  <th>Recommendation</th>
+                  <th>Priority</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td>Finding 1</td>
+                  <td>Describe the impact</td>
+                  <td>What to do about it</td>
+                  <td><span class="jf-badge jf-badge--accent">High</span></td>
+               </tr>
+               <tr>
+                  <td>Finding 2</td>
+                  <td>Describe the impact</td>
+                  <td>What to do about it</td>
+                  <td><span class="jf-badge jf-badge--primary">Medium</span></td>
+               </tr>
+            </tbody>
+         </table>
+      </section>
+
+      <hr class="jf-divider">
+
+      <section class="jf-section">
+         <h2>Recommendations</h2>
+         <div class="jf-grid-2">
+            <div class="jf-card">
+               <h3>Recommendation 1</h3>
+               <p>Detailed recommendation with rationale.</p>
+            </div>
+            <div class="jf-card">
+               <h3>Recommendation 2</h3>
+               <p>Detailed recommendation with rationale.</p>
+            </div>
+         </div>
+      </section>
+   </div>
+
+   <script src="js/comments.js"></script>
+   <script src="js/search.js"></script>
+   <script src="js/version-loader.js"></script>
+   <script src="js/jarvis-chat.js"></script>
+   <script src="js/built-with.js"></script>
+
+   <script>
+      document.getElementById('jf-logo').textContent = window.JF.project.logoLetter;
+      document.getElementById('jf-project-name').textContent = window.JF.project.name;
+      var nav = document.getElementById('jf-doc-nav');
+      window.JF.docs.forEach(function(doc) {
+         var a = document.createElement('a');
+         a.href = doc.file;
+         a.textContent = doc.shortName;
+         if (doc.file === 'business-review.html') { a.className = 'active'; a.style.color = doc.color; }
+         nav.appendChild(a);
+      });
+   </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+{
+  "name": "@koftwentytwo/jarvis-file-backend",
+  "version": "0.1.0",
+  "description": "Node.js AI services for Jarvis File -- comment monitor, chat responder, change processor",
+  "main": "jarvis.js",
+  "files": [
+    "jarvis.js",
+    "change-processor.js",
+    "lib/"
+  ],
+  "scripts": {
+    "start": "node jarvis.js & node change-processor.js",
+    "start:jarvis": "node jarvis.js",
+    "start:processor": "node change-processor.js",
+    "test": "node --test test/**/*.test.js",
+    "lint": "eslint *.js lib/"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.0.0",
+    "@anthropic-ai/sdk": "^0.30.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KofTwentyTwo/jarvis-file.git",
+    "directory": "packages/jarvis-file-backend"
+  },
+  "keywords": [
+    "jarvis-file",
+    "ai-assistant",
+    "claude",
+    "firebase",
+    "change-processor"
+  ],
+  "author": "KofTwentyTwo",
+  "license": "MIT"
+}

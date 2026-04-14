@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+   <title><!-- Set by config-loader.js --></title>
+   <script src="jarvis-file.config.js"></script>
+   <script src="js/config-loader.js"></script>
+   <script src="js/auth-gate.js"></script>
+   <link rel="stylesheet" href="css/jarvis-file.css">
+</head>
+<body>
+
+   <!-- Header -->
+   <header class="header">
+      <div class="header-top">
+         <div class="logo-area">
+            <div class="logo-icon" id="jf-logo"></div>
+            <div class="logo-text">
+               <h1 id="jf-project-name"></h1>
+               <span id="jf-doc-name">Executive Summary</span>
+            </div>
+         </div>
+         <nav class="doc-switcher" id="jf-doc-nav"></nav>
+      </div>
+   </header>
+
+   <!-- Content -->
+   <div class="content">
+      <section class="jf-hero">
+         <h2>Executive Summary</h2>
+         <p class="section-subtitle">Your project overview goes here.</p>
+      </section>
+
+      <!-- Stats Grid Example -->
+      <!--
+      <div class="jf-stat-grid">
+         <div class="jf-stat-card">
+            <div class="stat-number">42</div>
+            <div class="stat-label">Your Metric</div>
+         </div>
+         <div class="jf-stat-card">
+            <div class="stat-number">7</div>
+            <div class="stat-label">Another Metric</div>
+         </div>
+         <div class="jf-stat-card">
+            <div class="stat-number">99%</div>
+            <div class="stat-label">Success Rate</div>
+         </div>
+      </div>
+      -->
+
+      <section class="jf-section">
+         <h2>Overview</h2>
+         <p>Replace this content with your project overview. Use the design system
+            classes to structure your document: cards, grids, stat boxes, badges,
+            tables, and alerts.</p>
+      </section>
+
+      <!-- Card Grid Example -->
+      <!--
+      <div class="jf-grid-3">
+         <div class="jf-card">
+            <h3>Card Title</h3>
+            <p>Card content with the dark theme design system.</p>
+         </div>
+         <div class="jf-card">
+            <h3>Card Title</h3>
+            <p>Card content with the dark theme design system.</p>
+         </div>
+         <div class="jf-card">
+            <h3>Card Title</h3>
+            <p>Card content with the dark theme design system.</p>
+         </div>
+      </div>
+      -->
+
+      <!-- Data Table Example -->
+      <!--
+      <table class="jf-table">
+         <thead><tr><th>Column</th><th>Column</th><th>Column</th></tr></thead>
+         <tbody>
+            <tr><td>Value</td><td>Value</td><td>Value</td></tr>
+            <tr><td>Value</td><td>Value</td><td>Value</td></tr>
+         </tbody>
+      </table>
+      -->
+   </div>
+
+   <!-- Framework scripts -->
+   <script src="js/comments.js"></script>
+   <script src="js/search.js"></script>
+   <script src="js/version-loader.js"></script>
+   <script src="js/jarvis-chat.js"></script>
+   <script src="js/built-with.js"></script>
+
+   <script>
+      document.getElementById('jf-logo').textContent = window.JF.project.logoLetter;
+      document.getElementById('jf-project-name').textContent = window.JF.project.name;
+      // Doc nav built from window.JF.docs
+      var nav = document.getElementById('jf-doc-nav');
+      window.JF.docs.forEach(function(doc) {
+         var a = document.createElement('a');
+         a.href = doc.file;
+         a.textContent = doc.shortName;
+         if (window.location.pathname.endsWith(doc.file) || (doc.file === 'index.html' && window.location.pathname.endsWith('/'))) {
+            a.className = 'active';
+            a.style.color = doc.color;
+         }
+         nav.appendChild(a);
+      });
+   </script>
+</body>
+</html>
