@@ -36,14 +36,21 @@ function extractFullText(htmlPath) {
    const html = fs.readFileSync(htmlPath, "utf-8");
 
    // Strip HTML tags, decode entities, normalize whitespace
-   return html
-      .replace(/<script[\s\S]*?<\/script>/gi, "")
-      .replace(/<style[\s\S]*?<\/style>/gi, "")
-      .replace(/<[^>]+>/g, " ")
+   // Repeat each removal until stable so nested or split tags cannot survive,
+   // and decode &amp; last so encoded entities are not double-decoded.
+   let text = html;
+   for (let previous = null; previous !== text;) {
+      previous = text;
+      text = text
+         .replace(/<script\b[\s\S]*?<\/script\b[^>]*>/gi, "")
+         .replace(/<style\b[\s\S]*?<\/style\b[^>]*>/gi, "")
+         .replace(/<[^>]+>/g, " ");
+   }
+   return text
       .replace(/&nbsp;/g, " ")
-      .replace(/&amp;/g, "&")
       .replace(/&lt;/g, "<")
       .replace(/&gt;/g, ">")
+      .replace(/&amp;/g, "&")
       .replace(/\s+/g, " ")
       .trim();
 }
