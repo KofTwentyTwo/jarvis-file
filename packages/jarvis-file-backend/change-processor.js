@@ -15,7 +15,7 @@ const { initFirestore } = require("./lib/firestore");
 
 async function main() {
    const config = loadConfig();
-   const db = initFirestore(config);
+   const _db = initFirestore(config);
 
    const crCollection = config.project.slug + "_change_requests";
 

@@ -19,8 +19,8 @@ const { createClient } = require("./lib/anthropic");
 async function main() {
    const config = loadConfig();
 
-   const db = initFirestore(config);
-   const claude = createClient(config);
+   const _db = initFirestore(config);
+   const _claude = createClient(config);
 
    const commentsCollection = config.project.slug + "_comments";
    const chatCollection = config.project.slug + "_jarvis_chats";
