@@ -12,11 +12,11 @@ const fs = require("fs");
 
 /**
  * Extract text content from a specific section of an HTML file.
- * @param {string} htmlPath - Path to the HTML file
- * @param {string} sectionId - Section identifier to extract
+ * @param {string} _htmlPath - Path to the HTML file
+ * @param {string} _sectionId - Section identifier to extract
  * @returns {string} Plain text content of the section
  */
-function extractSectionText(htmlPath, sectionId) {
+function extractSectionText(_htmlPath, _sectionId) {
    // TODO: Phase 1 -- implement HTML section text extraction
    // Parse HTML, find section by data-section-id or heading,
    // strip tags, return plain text for LLM context
